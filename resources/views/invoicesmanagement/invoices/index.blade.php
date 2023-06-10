@@ -6,6 +6,9 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h5>Invoice Management</h5>
+                    <div>
+                        <input class="form-control" placeholder="Search" id="searchBar">
+                    </div>
                     <div class="text-right" style="margin-bottom:15px;">
                         <a href="javascript:void(0)" class="btn btn-success my-2 my-sm-0" id="btn-new">Create New Invoice</a>
                     </div>

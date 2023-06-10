@@ -11,6 +11,13 @@ $("body").on("click", ".btn-approved", function (e) {
     updateStatusApprove($(e.currentTarget).data("id"));
 });
 
+$("#searchBar").keyup(function () {
+    var value = $("#searchBar").val().toLowerCase();
+    $("#table-main tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+});
+
 function updateStatusApprove(id) {
     swal.fire({
         title: "Are you sure",
@@ -141,7 +148,6 @@ const state = {
         let model = await fetch.update(state.entity, pk, params);
 
         if (model) {
-            //    console.log(model)
             state.models[state.activeIndex] = model;
             fetch.writer(state.entity, model);
 

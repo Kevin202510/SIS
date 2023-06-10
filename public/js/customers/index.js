@@ -1,14 +1,4 @@
 import fetch from "../modules/fetch.js";
-/**
- *-----------------------------------------------
- * @param Model entity.name
- * @param Attributes entity.attribute(show on table)
- * @param Button attribute.actions.key
- * @param btn_attribute key:['icon','tooltip','color']
- * @param Base_URL entiry.url
- * @return GUI BREAD
- */
-
 $("body").on("click", ".btn-find", async (e) =>
     state.show($(e.currentTarget).data("index"))
 );
@@ -16,8 +6,14 @@ $("body").on("click", ".btn-delete", (e) =>
     state.destroy($(e.currentTarget).data("index"))
 );
 
+$("#searchBar").keyup(function () {
+    var value = $("#searchBar").val().toLowerCase();
+    $("#table-main tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+});
+
 const state = {
-    /* [Table] */
     entity: {
         name: "customer",
         attributes: ["fullName", "address", "contact"],
@@ -27,11 +23,7 @@ const state = {
         },
         baseUrl: "api",
     },
-    /* [Object Mapping] */
     models: [],
-    /* [Tag object] */
-    // btnKey: document.getElementById("key"),
-    // btnLook: document.getElementById("look"),
     btnNew: document.getElementById("btn-new"),
     Userid: document.getElementById("id"),
     modalTitle: document.getElementById("modal-title"),
@@ -39,19 +31,12 @@ const state = {
     activeIndex: 0,
     btnUpdate: null,
     btnDelete: null,
-    /* [initialized] */
     init: () => {
-        // Attach listeners
-        // state.btnKey.addEventListener("keyup", state.ask);
-        // state.btnKey.disabled = false;
-        // state.btnLook.addEventListener("click", state.ask);
-        // state.btnLook.disabled = false;
         state.btnNew.addEventListener("click", state.create);
         state.btnNew.disabled = false;
 
         state.ask();
     },
-    /* [ACTIONS] */
     ask: async () => {
         state.models = await fetch.translate(state.entity);
         if (state.models) {

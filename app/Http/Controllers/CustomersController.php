@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customers;
 use Illuminate\Http\Request;
+use Hash, Carbon\Carbon;
 
 class CustomersController extends Controller
 {

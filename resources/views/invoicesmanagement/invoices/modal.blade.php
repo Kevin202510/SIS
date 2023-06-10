@@ -49,12 +49,20 @@
                           <thead>
                               <tr>
                               <th scope="col">Product Name</th>
-                              <th scope="col">Price</th>
                               <th scope="col">Quantity</th>
+                              <th scope="col">Price</th>
                               <th scope="col">Sub Total</th>
                               </tr>
                           </thead>
                           <tbody id="table-mains"></tbody>
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td></td>
+                              <td>TOTAL</td>
+                              <td><span id="generalTotal">0</span></td>
+                            </tr>
+                          </tbody>
                       </table>
                   </div>
                 </center>

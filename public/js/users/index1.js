@@ -8,6 +8,13 @@ $("body").on("click", ".btn-recover", async (e) =>
     state.recover($(e.currentTarget).data("index"))
 );
 
+$("#searchBar").keyup(function () {
+    var value = $("#searchBar").val().toLowerCase();
+    $("#table-main tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+});
+
 const state = {
     /* [Table] */
     entity: {
